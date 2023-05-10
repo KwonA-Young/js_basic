@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='ko'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>이벤트객체</title>
+        <style></style>
+    </head>
+    <body>
+        <p>아무 곳이나 클릭하세요</p>
+        <em class="msg"></em>
+        
+        <hr><hr><hr>
+
+        <input type="text" id="text">
+        <p class="show"></p>
+
+        <script>
+            // 모든 DOM의 최상단에 자동으로 생성되는 객체(document)에도 이벤트를 걸 수 있다.
+            document.onclick = function(event) {
+                // console.log(event);
+
+                // 마우스의 좌표 구하기
+                const {x, y} = event;
+                // console.log(`x : ${x}, y : ${y}`);
+                // console.log(`x : ${event.x}, y : ${event.y}`);
+
+                // em.msg에 클릭할 때마다 좌표가 표시되도록 해주세요.
+                // 힌트: em.textContent......
+                $em = document.querySelector('.msg');
+                $em.textContent = `x : ${event.x}, y : ${event.y}`;
+            };
+            const $input = document.querySelector('input');
+            function inputKeyUp(e) {
+                const $show = document.querySelector(".show");
+
+                $show.textContent = $input.value; // input 태그 내부에 입력된 텍스트 복사
+                console.log($input.value);
+            }        
+
+            // input 태그 내부에서 키보드가 떼어지면 발동
+            $input.addEventListner ('keyup', inputKeyUp);
+            </script>
+    </body>
+</html>
